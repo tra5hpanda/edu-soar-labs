@@ -1,0 +1,119 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_4",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                }
+            ],
+            "hash": "27fc82f7ced05d5018a367ddf2af20e486a5ec77",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1760,
+                    "y": 439.9999999999999
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "4": {
+                    "data": {
+                        "action": "geolocate ip",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Locate Source",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "MaxMind",
+                        "connectorConfigs": [
+                            "maxmind"
+                        ],
+                        "connectorId": "c566e153-3118-4033-abda-14dd9748c91a",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "locate_source",
+                        "id": "4",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "ip": "artifact:*.cef.sourceAddress"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "ip"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 1740,
+                    "y": 600
+                }
+            },
+            "notes": "",
+            "origin": {
+                "playbook_id": 173,
+                "playbook_name": "Solution: Investigation Lab 3",
+                "playbook_repo_id": 2,
+                "playbook_repo_name": "local"
+            }
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3.9",
+        "schema": "5.0.20",
+        "version": "6.4.1.361"
+    },
+    "create_time": "2025-06-13T20:51:02.991986+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

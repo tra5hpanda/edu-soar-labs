@@ -1,0 +1,338 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_4",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_0_to_port_5",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_0_to_port_6",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_4_to_port_7",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_5_to_port_7",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "conditionKey": "condition_key_0",
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_7_to_port_8",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "8",
+                    "targetPort": "8_in"
+                }
+            ],
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1760,
+                    "y": 440
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "4": {
+                    "data": {
+                        "action": "geolocate ip",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Locate Source",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "MaxMind",
+                        "connectorConfigs": [
+                            "maxmind"
+                        ],
+                        "connectorId": "c566e153-3118-4033-abda-14dd9748c91a",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "locate_source",
+                        "id": "4",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "ip": "artifact:*.cef.sourceAddress"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "ip"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 1460,
+                    "y": 580
+                },
+                "5": {
+                    "data": {
+                        "action": "domain reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Source Reputation",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal v3",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "functionId": 1,
+                        "functionName": "source_reputation",
+                        "id": "5",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "domain": "artifact:*.cef.sourceDnsDomain"
+                        },
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 1740,
+                    "y": 580
+                },
+                "6": {
+                    "data": {
+                        "action": "file reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Virus Search",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal v3",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "functionId": 1,
+                        "functionName": "virus_search",
+                        "id": "6",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "hash": "artifact:*.cef.fileHash"
+                        },
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 2020,
+                    "y": 580
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check Reports",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": ">",
+                                        "param": "source_reputation:action_result.summary.malicious",
+                                        "value": "0"
+                                    },
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": ">",
+                                        "param": "virus_search:action_result.summary.malicious",
+                                        "value": "0"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "conditionKey": "condition_key_0",
+                                "customName": "Malicious",
+                                "display": "If",
+                                "logic": "or",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "conditionKey": "condition_key_5",
+                                "customName": "Safe",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "check_reports",
+                        "id": "7",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 1820,
+                    "y": 720
+                },
+                "8": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Notify SOC Management",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "role",
+                            "value": "Automation Engineer"
+                        },
+                        "functionId": 1,
+                        "functionName": "notify_soc_management",
+                        "id": "8",
+                        "message": "A potentially malicious file download has been detected on a local server with IP address {0}.",
+                        "parameters": [
+                            "artifact:*.cef.destinationAddress"
+                        ],
+                        "responseTime": 30,
+                        "responses": [
+                            {
+                                "required": true,
+                                "responseOptions": [
+                                    "Yes",
+                                    "No"
+                                ],
+                                "responsePrompt": "Notify SOC management?",
+                                "responseType": "yes/no"
+                            }
+                        ],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "8",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 1740,
+                    "y": 900
+                }
+            },
+            "notes": "",
+            "origin": {
+                "playbook_id": 173,
+                "playbook_name": "Solution: Investigation Lab 2",
+                "playbook_repo_id": 2,
+                "playbook_repo_name": "local"
+            }
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3.9",
+        "schema": "5.0.20",
+        "version": "6.4.1.361"
+    },
+    "create_time": "2025-06-13T20:23:26.694728+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}
